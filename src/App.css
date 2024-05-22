@@ -2,13 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5px;
+  margin: 0;
+  flex-direction: column;
 }
 
 h2  {
   display: flex;
   justify-content: center;
   color: whitesmoke;
+  margin: 10px;
 }
 
 .infoWindow {
@@ -36,3 +38,13 @@ h2  {
     color: #A52A2A;
   }
 }
+ 
+p {
+  color: white;
+  font-size: small;
+}
+a {
+  color: rgb(248, 212, 251);
+}
+
+

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow,} from "@react-google-maps/api";
 import "./App.css";
 import data from "./data.json";
 
@@ -55,19 +55,30 @@ function MyComponent() {
           ))}
           {selectedMarker && (
             <InfoWindow
-              position={{ lat: selectedMarker.location.lat, lng: selectedMarker.location.lng }}
+              position={{
+                lat: selectedMarker.location.lat,
+                lng: selectedMarker.location.lng,
+              }}
               onCloseClick={() => setSelectedMarker(null)}
             >
               <div className="infoWindow">
                 <h3>{selectedMarker.location.name}</h3>
                 <h4>{selectedMarker.location.category}</h4>
                 {selectedMarker.location.link && (
-                  <a href={selectedMarker.location.link} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={selectedMarker.location.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Vizito Vendodhjen &nbsp; {String.fromCodePoint("0x2192")}
                   </a>
                 )}
                 {selectedMarker.location.website && (
-                  <a href={selectedMarker.location.website} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={selectedMarker.location.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Website &nbsp; {String.fromCodePoint("0x2192")}
                   </a>
                 )}
@@ -75,6 +86,15 @@ function MyComponent() {
             </InfoWindow>
           )}
         </GoogleMap>
+        <div>
+          <p>
+            Open source repo. Feel free to add any software company I forgot to
+            mention on{" "}
+            <a href="https://github.com/nidabaci/albaniantechmap" target="_blank" rel="noopener noreferrer">
+              Github Repo
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   ) : (
