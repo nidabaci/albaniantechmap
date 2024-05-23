@@ -1258,5 +1258,15 @@
         "category": "Software company",
         "note": null,
         "link": "https://maps.app.goo.gl/VuixQ8VehhRHSnEj8"
+    },
+    {
+        "id": 127,
+        "name": "Ritech Technologies",
+        "lat": 41.31400680931462,
+        "lng": 19.798339018103,
+        "website": "http://www.ritech.co/",
+        "category": "Corporate office",
+        "note": null,
+        "link": "https://maps.app.goo.gl/2GxRHSfdUbKgpdP96"
     }
 ]
