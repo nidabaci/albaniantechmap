@@ -1258,5 +1258,16 @@
         "category": "Software company",
         "note": null,
         "link": "https://maps.app.goo.gl/VuixQ8VehhRHSnEj8"
+    },
+    {
+        "id": 127,
+        "name": "iProPixel",
+        "lat": 41.319090,
+        "lng": 19.817531,
+        "website": "https://klajdizmalaj.com/",
+        "category": "Software company",
+        "note": null,
+        "link": "https://maps.app.goo.gl/Mz13Hxxd9CJkEMLR8"
     }
+
 ]
