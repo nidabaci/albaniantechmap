@@ -1052,8 +1052,8 @@
     {
         "id": 106,
         "name": "PricewaterhouseCoopers Albania",
-        "lat": 41.40913695022889,
-        "lng": 19.831946450129802,
+        "lat": 41.32243148725696,
+        "lng": 19.818032221516567,
         "website": "http://www.pwc.com/al/en/about-us/office.jhtml",
         "category": "Software company",
         "note": null,
@@ -1082,8 +1082,8 @@
     {
         "id": 109,
         "name": "Deloitte",
-        "lat": 41.46705646772744,
-        "lng":  19.80958772259362,
+        "lat": 41.32218344427426,
+        "lng":  19.79312618151536,
         "website": "https://www2.deloitte.com/al/en.html",
         "category": "Software company",
         "note": null,
