@@ -23,14 +23,10 @@ function MyComponent() {
   const [selectedMarker, setSelectedMarker] = useState(null);
 
   return (
-    <div>
-      <h2> Companies on IT services and IT consulting in Albania </h2>
+    <div className="app-wrapper">
+      <h2> Harta e Kompanive IT / Digjitale ne Shqiperi </h2>
       <div className="mapContainer">
-        <MapContainer
-          center={center}
-          zoom={13}
-          style={{ width: "1000px", height: "450px" }}
-        >
+        <MapContainer center={center} zoom={13}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -53,7 +49,7 @@ function MyComponent() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Vizito Vendodhjen &nbsp; {String.fromCodePoint("0x2192")}
+                      VENDODHJA &nbsp; {String.fromCodePoint("0x2192")}
                     </a>
                   )}
                   {location.website && (
@@ -62,7 +58,7 @@ function MyComponent() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Website &nbsp; {String.fromCodePoint("0x2192")}
+                      WEBSITE &nbsp; {String.fromCodePoint("0x2192")}
                     </a>
                   )}
                 </div>
@@ -70,19 +66,6 @@ function MyComponent() {
             </Marker>
           ))}
         </MapContainer>
-        <div>
-          <p>
-            Open source repo. Feel free to add any software company I forgot to
-            mention on{" "}
-            <a
-              href="https://github.com/nidabaci/albaniantechmap"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github Repo
-            </a>
-          </p>
-        </div>
       </div>
     </div>
   );
