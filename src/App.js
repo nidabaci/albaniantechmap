@@ -1,104 +1,90 @@
-import React, { useState, useCallback } from "react";
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow,} from "@react-google-maps/api";
+import React, { useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
 import "./App.css";
 import data from "./data.json";
 
-const containerStyle = {
-  width: "1000px",
-  height: "450px",
-};
+// Fix for default marker icons in Leaflet
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
-const center = {
-  lat: 41.33,
-  lng: 19.83,
-};
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
+
+const center = [41.33, 19.83];
 
 function MyComponent() {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-  });
-
-  const [map, setMap] = React.useState(null);
-  const onLoad = useCallback(() => {
-    setMap(map);
-  }, []);
-
-  const onUnmount = useCallback(() => {
-    setMap(null);
-  }, []);
-
   const [selectedMarker, setSelectedMarker] = useState(null);
 
-  const handleMarkerClick = (marker, location) => {
-    setSelectedMarker({ marker, location });
-  };
-
-  return isLoaded ? (
+  return (
     <div>
       <h2> Companies on IT services and IT consulting in Albania </h2>
       <div className="mapContainer">
-        <GoogleMap
-          mapContainerStyle={containerStyle}
+        <MapContainer
           center={center}
           zoom={13}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
+          style={{ width: "1000px", height: "450px" }}
         >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
           {data.map((location, index) => (
             <Marker
               key={index}
-              position={{ lat: location.lat, lng: location.lng }}
-              title={location.name}
-              onClick={(marker) => handleMarkerClick(marker, location)}
-            />
-          ))}
-          {selectedMarker && (
-            <InfoWindow
-              position={{
-                lat: selectedMarker.location.lat,
-                lng: selectedMarker.location.lng,
+              position={[location.lat, location.lng]}
+              eventHandlers={{
+                click: () => setSelectedMarker(location),
               }}
-              onCloseClick={() => setSelectedMarker(null)}
             >
-              <div className="infoWindow">
-                <h3>{selectedMarker.location.name}</h3>
-                <h4>{selectedMarker.location.category}</h4>
-                {selectedMarker.location.link && (
-                  <a
-                    href={selectedMarker.location.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Vizito Vendodhjen &nbsp; {String.fromCodePoint("0x2192")}
-                  </a>
-                )}
-                {selectedMarker.location.website && (
-                  <a
-                    href={selectedMarker.location.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Website &nbsp; {String.fromCodePoint("0x2192")}
-                  </a>
-                )}
-              </div>
-            </InfoWindow>
-          )}
-        </GoogleMap>
+              <Popup>
+                <div className="infoWindow">
+                  <h3>{location.name}</h3>
+                  <h4>{location.category}</h4>
+                  {location.link && (
+                    <a
+                      href={location.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Vizito Vendodhjen &nbsp; {String.fromCodePoint("0x2192")}
+                    </a>
+                  )}
+                  {location.website && (
+                    <a
+                      href={location.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Website &nbsp; {String.fromCodePoint("0x2192")}
+                    </a>
+                  )}
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
         <div>
           <p>
             Open source repo. Feel free to add any software company I forgot to
             mention on{" "}
-            <a href="https://github.com/nidabaci/albaniantechmap" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/nidabaci/albaniantechmap"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Github Repo
             </a>
           </p>
         </div>
       </div>
     </div>
-  ) : (
-    <></>
   );
 }
 
